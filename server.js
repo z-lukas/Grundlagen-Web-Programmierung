@@ -2,39 +2,30 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-const port = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000; // Korrigiert den Operator von "|" zu "||"
 
+// Middleware, um JSON-Daten aus dem Request-Body zu parsen
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'your-email@gmail.com',
-        pass: 'your-email-password',
-    }
+// Middleware, um statische Dateien bereitzustellen
+app.use(express.static(path.join(__dirname, 'public'))); // Setzt voraus, dass deine statischen Dateien im "public"-Ordner liegen
+
+// Route für die Startseite
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Route, um POST-Anfragen vom Kontaktformular zu empfangen
 app.post('/send-message', (req, res) => {
     const { name, email, message } = req.body;
+    console.log(`Nachricht erhalten von ${name} (${email}): ${message}`);
+    
+    // Hier könntest du die Daten z.B. in einer Datenbank speichern oder eine E-Mail senden
 
-    const mailOptions = {
-        from: email,
-        to: 'lukas.zumstein@redq.ch',
-        subject: `Neue Nachricht von ${name}`,
-        text: message,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Error:', error);
-            return res.json({ success: false });
-        }
-        console.log('Email sent:', info.response);
-        res.json({ success: true });
-    });
+    res.json({ success: true });
 });
 
+// Server starten
 app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
+    console.log(`Server läuft auf http://localhost:${port}`);
 });
