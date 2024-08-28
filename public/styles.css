@@ -30,20 +30,23 @@ nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Menü umbricht bei kleineren Bildschirmen */
+    padding: 0; /* Entfernt zusätzliches Padding */
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 10px 15px; /* Passt den Abstand für mobile Geräte an */
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    font-size: 16px; /* Vergrößert die Schrift auf mobilen Geräten */
 }
 
 .container {
-    width: 80%;
+    width: 90%; /* Breiter auf kleineren Bildschirmen */
     margin: 20px auto;
 }
 
@@ -58,40 +61,37 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Selektiert die <ul> innerhalb des div.job */
 .job ul {
-    list-style-type: disc; /* Standard Aufzählungszeichen (Punkt) */
-    padding-left: 20px; /* Abstand zum Rand */
-    margin-top: 10px; /* Abstand zum oberen Element */
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 10px;
 }
 
-/* Stil für die <li> Elemente innerhalb von .job ul */
 .job ul li {
-    margin-bottom: 8px; /* Abstand zwischen den Listenpunkten */
-    line-height: 1.5; /* Zeilenhöhe für bessere Lesbarkeit */
-    font-size: 16px; /* Schriftgröße der Listenpunkte */
-    color: #333; /* Textfarbe */
+    margin-bottom: 8px;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #333;
 }
 
-/* Optional: Stil für das <h3> und <span> innerhalb von .job */
 .job h3 {
-    font-size: 20px; /* Größe der Überschrift */
-    color: #000; /* Farbe der Überschrift */
-    margin-bottom: 5px; /* Abstand zur folgenden Zeile */
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 5px;
 }
 
 .job span {
-    display: block; /* Block-Element, damit es unter der Überschrift angezeigt wird */
-    font-size: 14px; /* Schriftgröße für die Zeitspanne */
-    color: #555; /* Textfarbe für die Zeitspanne */
-    margin-bottom: 10px; /* Abstand zur folgenden Liste */
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
 }
-
 
 .skills-list {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    padding: 0; /* Entfernt zusätzliches Padding */
 }
 
 .skills-list li {
@@ -100,6 +100,8 @@ h2 {
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
+    flex: 1 1 calc(50% - 10px); /* 2 Spalten Layout für mobile Geräte */
+    text-align: center; /* Zentriert den Text */
 }
 
 #contact-form {
@@ -131,7 +133,6 @@ h2 {
     background-color: #555;
 }
 
-/* Fortschrittsbalken-Styling */
 .skill-container {
     margin-bottom: 20px;
 }
@@ -169,17 +170,21 @@ label {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap; /* Flexibles Layout für mobile Geräte */
+    text-align: center; /* Zentriert den Text */
 }
 
 .personal-info img {
-    width: 150px;
+    width: 100px; /* Kleinere Bilder für mobile Geräte */
     border-radius: 10%;
     margin-right: 20px;
+    margin-bottom: 10px; /* Abstand unter dem Bild für mobile Geräte */
 }
 
 .details {
     font-size: 16px;
     color: #333;
+    text-align: left; /* Text linksbündig auf mobilen Geräten */
 }
 
 .details p {
@@ -192,4 +197,27 @@ footer {
     background-color: #333;
     color: #fff;
     margin-top: 40px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    nav ul {
+        flex-direction: column; /* Vertikales Menü auf mobilen Geräten */
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Abstand zwischen Menüeinträgen auf mobilen Geräten */
+    }
+
+    .skills-list li {
+        flex: 1 1 calc(100% - 10px); /* Volle Breite auf kleineren Bildschirmen */
+    }
+
+    .personal-info img {
+        width: 80px; /* Noch kleinere Bilder auf sehr kleinen Bildschirmen */
+    }
 }
