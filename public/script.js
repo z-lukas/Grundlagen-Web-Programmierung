@@ -1,3 +1,16 @@
+document.getElementById('category-filter').addEventListener('change', function() {
+    var category = this.value;
+    var skillContainers = document.querySelectorAll('.skill-container');
+
+    skillContainers.forEach(function(container) {
+        if (category === 'all' || container.getAttribute('data-category') === category) {
+            container.style.display = 'block';
+        } else {
+            container.style.display = 'none';
+        }
+    });
+});
+
 document.getElementById('contact-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
